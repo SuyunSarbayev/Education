@@ -1,16 +1,23 @@
 package suyun.personal.education
 
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
+import android.os.PersistableBundle
+import android.util.Log
+import android.widget.Button
+import android.widget.EditText
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var textviewHello: TextView
-
     var titleUserName: String = "Hello"
+
     var titleCategory: String = "Hello"
+
+    var edittextName: EditText? = null
+
+    var edittextSurname: EditText? = null
+
+    var buttonAction: Button? = null
 
     var orderId: Int = 0
 
@@ -20,17 +27,58 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("LIFE", "onCreate")
         setContentView(R.layout.activity_main)
-        textviewHello = findViewById(R.id.textview_activity_main)
-        textviewHello.setText("Okay")
-        textviewHello.setTextColor(Color.parseColor("#ff0000"))
+
+        edittextName = findViewById(R.id.edittext_activity_main_name)
+        edittextSurname = findViewById(R.id.edittext_activity_main_surname)
+        buttonAction = findViewById(R.id.button_activity_main_fill_data)
+
+        buttonAction?.setOnClickListener {
+            edittextName?.setText("Name")
+            edittextSurname?.setText("Surname")
+        }
     }
 
-    fun initializeViews(){
-        textviewHello = findViewById(R.id.textview_activity_main)
+    override fun onStart() {
+        super.onStart()
+        Log.d("LIFE", "onStart")
     }
 
-    fun initiateCount() : Int{
-        return 2 + 2
+    override fun onResume() {
+        super.onResume()
+        Log.d("LIFE", "onResume")
     }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("LIFE", "onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("LIFE", "onStop")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("LIFE", "onDestroy")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d("LIFE", "onRestart")
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        Log.d("LIFE", "onSaveInstanceState")
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        Log.d("LIFE", "onRestoreInstanceState")
+    }
+
+
 }

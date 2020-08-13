@@ -8,16 +8,20 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textview_activity_main"
-        android:text="Hello"
-        android:textSize="16sp"
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"/>
+    <EditText
+        android:id="@+id/edittext_activity_main_name"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/edittext_activity_main_surname"
+        android:layout_below="@+id/edittext_activity_main_name"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"/>
 
     <Button
-        android:id="@+id/button_dialog_shop_detail_favourites"
+        android:layout_below="@+id/edittext_activity_main_surname"
+        android:id="@+id/button_activity_main_fill_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 </RelativeLayout>
