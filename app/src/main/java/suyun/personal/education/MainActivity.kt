@@ -2,7 +2,6 @@ package suyun.personal.education
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
@@ -21,6 +20,8 @@ class MainActivity : AppCompatActivity() {
 
     var orderId: Int = 0
 
+    var array = arrayOf(6,7,4,5,6,7,8,9)
+
     companion object{
         var KEY_ORDER_ID = "KEY_ORDER_ID"
     }
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.d("LIFE", "onCreate")
         setContentView(R.layout.activity_main)
+        throw RuntimeException("Test Crash") // Force a crash
 
         edittextName = findViewById(R.id.edittext_activity_main_name)
         edittextSurname = findViewById(R.id.edittext_activity_main_surname)
@@ -38,6 +40,7 @@ class MainActivity : AppCompatActivity() {
             edittextName?.setText("Name")
             edittextSurname?.setText("Surname")
         }
+
     }
 
     override fun onStart() {
@@ -79,6 +82,4 @@ class MainActivity : AppCompatActivity() {
         super.onRestoreInstanceState(savedInstanceState)
         Log.d("LIFE", "onRestoreInstanceState")
     }
-
-
 }
