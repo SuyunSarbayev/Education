@@ -1,5 +1,6 @@
 package suyun.personal.education
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -22,25 +23,46 @@ class MainActivity : AppCompatActivity() {
 
     var array = arrayOf(6,7,4,5,6,7,8,9)
 
+
     companion object{
         var KEY_ORDER_ID = "KEY_ORDER_ID"
+        val KEY_NAME = "suyun.personal.education.NAME"
+        val KEY_SURNAME = "suyun.personal.education.SURNAME"
+        val KEY_REQUEST_CODE = 1001
+        val KEY_RESULT_CODE = 1002
+        val KEY_RESULT_DATE = "suyun.personal_education.DATA"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("LIFE", "onCreate")
         setContentView(R.layout.activity_main)
-        throw RuntimeException("Test Crash") // Force a crash
 
         edittextName = findViewById(R.id.edittext_activity_main_name)
         edittextSurname = findViewById(R.id.edittext_activity_main_surname)
         buttonAction = findViewById(R.id.button_activity_main_fill_data)
 
         buttonAction?.setOnClickListener {
-            edittextName?.setText("Name")
-            edittextSurname?.setText("Surname")
+            initiateTransitionDetailActivity()
         }
+    }
 
+    fun initiateTransitionDetailActivity(){
+        if(edittextName?.text?.toString()?.length ?: 0 > 0 && edittextSurname?.text?.toString()?.length ?: 0 > 0) {
+            var intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra(KEY_NAME, edittextName?.text.toString())
+            intent.putExtra(KEY_SURNAME, edittextSurname?.text.toString())
+            startActivityForResult(intent, KEY_REQUEST_CODE) //explicit
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == KEY_REQUEST_CODE){
+            if(resultCode == KEY_RESULT_CODE){
+                Log.d("DATA", data?.getStringExtra(KEY_RESULT_DATE) ?: "")
+            }
+        }
     }
 
     override fun onStart() {
