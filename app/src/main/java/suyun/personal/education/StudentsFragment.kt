@@ -6,15 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+
+import kotlinx.android.synthetic.main.fragment_students.*
 
 class StudentsFragment : Fragment() {
 
     var rootView: View? = null
 
-    // Завод
-    var recyclerView: RecyclerView? = null
+    var name: String? = null
 
+    val age: Int = 7
+
+    var okay: String? = "Okay"
+
+    // Завод
     var adapter: StudentsAdapter? = null
 
     var students: ArrayList<Student> = ArrayList<Student>()
@@ -25,6 +30,48 @@ class StudentsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         rootView = LayoutInflater.from(context).inflate(R.layout.fragment_students, container, false)
+        
+        var arrayOfIn = arrayOf(1,2,3,4,5)
+
+//        for(i in arrayOfIn){}
+//
+//        arrayOfIn.forEach { item ->
+//
+//        }
+//
+//        arrayOfIn.forEachIndexed { index, i ->  }
+//
+//        (0..arrayOfIn.size - 1).forEach(
+//
+//        )
+//
+//        (0..6).random()
+//        if(5 in 16..73){
+//
+//        }
+//        for (i in arrayOfIn) {
+//
+//        }
+
+        when(5){
+            4 -> {}
+            3 -> {}
+        }
+
+        name is String
+        name = null
+
+        okay?.replaceALetter() ?: print("Okay this null")
+
+        var counter = arrayOfIn.countFive()
+//        new OnClickListener{
+//
+//        }
+//
+//        object: OnClickListener{
+//
+//        }
+
         return rootView
     }
 
@@ -41,6 +88,14 @@ class StudentsFragment : Fragment() {
         adapter = StudentsAdapter(students)
     }
 
+//    public String initializeDate(){
+//        return ""
+//    }
+//
+//    fun initializeData() : String{
+//
+//    }
+
     fun initializeData(){
         students.add(Student().apply { name = "John" })
         students.add(Student().apply { name = "John2" })
@@ -55,14 +110,25 @@ class StudentsFragment : Fragment() {
     }
 
     fun initializeRecyclerView(){
-        recyclerView?.adapter = adapter
+        recyclerview_fragment_students?.adapter = adapter
     }
 
     fun initializeLayoutManager(){
-        recyclerView?.layoutManager = LinearLayoutManager(context)
+        recyclerview_fragment_students?.layoutManager = LinearLayoutManager(context)
     }
 
-    fun initializeViews(){
-        recyclerView = rootView?.findViewById(R.id.recyclerview_fragment_students)
+    fun initializeViews(){}
+
+    fun String.replaceALetter(){
+        this.replace("o", "")
     }
+
+    fun Array<Int>.countFive() : Int{
+        var counter = 0
+        this.forEach { item ->
+            if(item == 5) counter++
+        }
+        return counter
+    }
+
 }
