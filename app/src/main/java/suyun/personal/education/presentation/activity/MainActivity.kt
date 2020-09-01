@@ -1,9 +1,11 @@
-package suyun.personal.education
+package suyun.personal.education.presentation.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.FrameLayout
+import suyun.personal.education.R
+import suyun.personal.education.presentation.fragments.StudentsFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,7 +23,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun initializeDefaultFragment(){
-        var loginFragment = StudentsFragment()
+        var loginFragment =
+            StudentsFragment()
 
         supportFragmentManager
             .beginTransaction()

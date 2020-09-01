@@ -1,4 +1,4 @@
-package suyun.personal.education
+package suyun.personal.education.presentation.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import suyun.personal.education.R
+import suyun.personal.education.presentation.fragments.DetailFragment
 
 class LoginFragment : Fragment() {
 
@@ -25,7 +27,8 @@ class LoginFragment : Fragment() {
     }
 
     fun initializeDetailFragment(){
-        var detailFragment = DetailFragment()
+        var detailFragment =
+            DetailFragment()
 
         activity?.supportFragmentManager
             ?.beginTransaction()

@@ -6,21 +6,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <Button
+        android:id="@+id/button1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </Button>
+
+    <Button
+        android:id="@+id/button2"
+        app:layout_constraintEnd_toStartOf="@+id/button1"
+        app:layout_constraintStart_toEndOf="@+id/textview_fragment_detail_surname"
+        app:layout_constraintTop_toBottomOf="@+id/textview_fragment_detail_surname"
+        app:layout_constraintBottom_toTopOf="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </Button>
+
     <TextView
         android:id="@+id/textview_fragment_detail_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="Name"
+        style="@style/MediumText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <TextView
         android:id="@+id/textview_fragment_detail_surname"
+        style="@style/MediumText"
+        android:layout_width="68dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="123dp"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textview_fragment_detail_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Surname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        tools:text="Surname" />
 </androidx.constraintlayout.widget.ConstraintLayout>
