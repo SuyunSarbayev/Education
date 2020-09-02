@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.FrameLayout
 import suyun.personal.education.R
 import suyun.personal.education.presentation.fragments.StudentsFragment
+import suyun.personal.education.presentation.fragments.StudentsViewPagerFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     fun initializeDefaultFragment(){
         var loginFragment =
-            StudentsFragment()
+            StudentsViewPagerFragment()
 
         supportFragmentManager
             .beginTransaction()

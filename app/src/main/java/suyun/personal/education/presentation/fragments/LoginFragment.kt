@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import suyun.personal.education.R
+import suyun.personal.education.data.Student
 import suyun.personal.education.presentation.fragments.DetailFragment
 
 class LoginFragment : Fragment() {
@@ -28,7 +29,7 @@ class LoginFragment : Fragment() {
 
     fun initializeDetailFragment(){
         var detailFragment =
-            DetailFragment()
+            StudentsViewPagerFragment()
 
         activity?.supportFragmentManager
             ?.beginTransaction()

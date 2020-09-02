@@ -66,7 +66,7 @@ class StudentsFragment :
         var fragmentManager = activity?.supportFragmentManager
 
         fragmentManager?.beginTransaction()
-            ?.add(R.id.framelayout_activity_main_fragment_container, DetailFragment().apply {
+            ?.add(R.id.framelayout_activity_main_fragment_container, StudentsViewPagerFragment().apply {
                 arguments = data
             }, "DetailFragment")
             ?.commit()
