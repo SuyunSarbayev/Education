@@ -9,8 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import suyun.personal.education.EducationApplication
 import suyun.personal.education.R
+import suyun.personal.education.data.EducationDatabase
 import suyun.personal.education.data.Student
+import suyun.personal.education.data.StudentEntity
 import suyun.personal.education.presentation.dialog.DialogLoginInformation
 import suyun.personal.education.presentation.fragments.DetailFragment
 
@@ -72,6 +77,19 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        var student = StudentEntity()
+        student.name = "John"
+
+        var db = Room.databaseBuilder(context!!, EducationDatabase::class.java, "education.db").allowMainThreadQueries().build()
+
+//        db.getStudentDao().initiateInsertStudent(student)
+//        db.getStudentDao().initiateInsertStudent(student)
+//        db.getStudentDao().initiateInsertStudent(student)
+//
+//        var listStudents: List<StudentEntity>? = db.getStudentDao().initiateGetStudents()
+//
+//        Log.d("Students", listStudents?.size?.toString() ?: 0.toString())
+//        Log.d("Students", listStudents?.get(0)?.name ?: " Empty")
         buttonAction = view?.findViewById(R.id.button_activity_main_fill_data)
         buttonAction?.setOnClickListener { initiateDisplayLoginDialog() }
     }

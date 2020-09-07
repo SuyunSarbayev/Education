@@ -19,7 +19,7 @@ class StudentsAdapter(var students: ArrayList<Student>) : RecyclerView.Adapter<R
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         Log.d("RecyclerView", "onCreateViewHolder")
         var view: View? = null
-        when(viewType){
+        return when(viewType){
             GROUP_TYPE -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.viewholder_student, parent, false)
                 GroupHolder(view)
