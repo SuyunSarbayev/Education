@@ -1,30 +1,13 @@
 package suyun.personal.education.data
 
-import android.os.Parcel
-import android.os.Parcelable
+import android.util.Log
 
-class Student() : Parcelable{
+public class Student(var backpack: Backpack) {
     var name: String = ""
 
-    constructor(parcel: Parcel) : this() {
-        name = parcel.readString() ?: ""
-    }
+    fun initiatePrintName(){
+        Log.d("Name", "Simple name")
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(name)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<Student> {
-        override fun createFromParcel(parcel: Parcel): Student {
-            return Student(parcel)
-        }
-
-        override fun newArray(size: Int): Array<Student?> {
-            return arrayOfNulls(size)
-        }
+        backpack.initiatePrintBackpack()
     }
 }

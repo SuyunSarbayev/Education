@@ -14,17 +14,6 @@ class StudentsFragmentPresenter : StudentsFragmentContract.StudentsPresenter<Stu
     override fun initializeData(){
         var students: ArrayList<Student> = ArrayList<Student>()
 
-        students.add(Student().apply { name = "John" })
-        students.add(Student().apply { name = "John2" })
-        students.add(Student().apply { name = "John3" })
-        students.add(Student().apply { name = "John4" })
-        students.add(Student().apply { name = "John5" })
-        students.add(Student().apply { name = "John6" })
-        students.add(Student().apply { name = "John7" })
-        students.add(Student().apply { name = "John8" })
-        students.add(Student().apply { name = "John9" })
-        students.add(Student().apply { name = "John10" })
-
         view?.initializeUpdateData(students)
         view?.initiateNotifyChanged()
     }

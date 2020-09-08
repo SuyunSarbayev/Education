@@ -59,4 +59,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics:17.5.0'
     // Add the Firebase Crashlytics SDK.
     implementation 'com.google.firebase:firebase-crashlytics:17.2.1'
+
+    implementation 'com.google.dagger:dagger-android:2.28.1'
+    implementation 'com.google.dagger:dagger-android-support:2.28.1' // if you use the support libraries
+    kapt 'com.google.dagger:dagger-android-processor:2.28.1'
+    kapt 'com.google.dagger:dagger-compiler:2.28.1'
 }

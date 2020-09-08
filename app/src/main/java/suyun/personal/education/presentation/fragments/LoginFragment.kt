@@ -13,18 +13,29 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import suyun.personal.education.EducationApplication
 import suyun.personal.education.R
-import suyun.personal.education.data.EducationDatabase
-import suyun.personal.education.data.Student
-import suyun.personal.education.data.StudentEntity
+import suyun.personal.education.data.*
+import suyun.personal.education.di.DaggerEducationComponentSuper
+import suyun.personal.education.di.EducationModule
 import suyun.personal.education.presentation.dialog.DialogLoginInformation
 import suyun.personal.education.presentation.fragments.DetailFragment
+import javax.inject.Inject
 
 class LoginFragment : Fragment() {
 
     var buttonAction: Button? = null
 
+    @Inject lateinit var student2: Student
+    @Inject lateinit var student: Student
+    @Inject lateinit var dog: Dog
+    @Inject lateinit var backPack: Backpack
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        DaggerEducationComponentSuper
+            .builder()
+            .educationModule(EducationModule())
+            .build()
+            .inject(this)
     }
 
     override fun onCreateView(
@@ -33,6 +44,9 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         var view = LayoutInflater.from(context).inflate(R.layout.fragment_login, container, false)
+
+        student.initiatePrintName()
+
         return view
     }
 
