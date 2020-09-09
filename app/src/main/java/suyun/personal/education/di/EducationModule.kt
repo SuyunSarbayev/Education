@@ -5,7 +5,6 @@ import dagger.Provides
 import suyun.personal.education.data.Backpack
 import suyun.personal.education.data.Dog
 import suyun.personal.education.data.Student
-import javax.inject.Singleton
 
 @Module
 class EducationModule {

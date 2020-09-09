@@ -2,6 +2,7 @@ package suyun.personal.education.presentation.fragments
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.net.DnsResolver
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,11 +12,15 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import suyun.personal.education.EducationApplication
 import suyun.personal.education.R
 import suyun.personal.education.data.*
 import suyun.personal.education.di.DaggerEducationComponentSuper
 import suyun.personal.education.di.EducationModule
+import suyun.personal.education.domain.CurrencyObject
 import suyun.personal.education.presentation.dialog.DialogLoginInformation
 import suyun.personal.education.presentation.fragments.DetailFragment
 import javax.inject.Inject
@@ -44,10 +49,25 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         var view = LayoutInflater.from(context).inflate(R.layout.fragment_login, container, false)
-
         student.initiatePrintName()
-
+        initiateRequest()
         return view
+    }
+
+    fun initiateRequest(){
+        var apiConnection = ApiConnection()
+        apiConnection.initializeAPIObject().initiateGetRates().enqueue(object: Callback<CurrencyObject> {
+            override fun onFailure(call: Call<CurrencyObject>, t: Throwable) {
+                Log.d("Failure", "fail")
+            }
+
+            override fun onResponse(
+                call: Call<CurrencyObject>,
+                response: Response<CurrencyObject>) {
+                var currencyObject = response.body()
+                Log.d("Success", currencyObject.toString())
+            }
+        })
     }
 
     fun initiateDisplayAlertDialog(){
