@@ -2,7 +2,6 @@ package suyun.personal.education.presentation.fragments
 
 import android.app.AlertDialog
 import android.content.DialogInterface
-import android.net.DnsResolver
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,18 +10,21 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.room.Room
-import androidx.room.RoomDatabase
+import io.reactivex.Observable
+import io.reactivex.Observer
+import io.reactivex.disposables.Disposable
+import io.reactivex.observers.DisposableObserver
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import suyun.personal.education.EducationApplication
 import suyun.personal.education.R
 import suyun.personal.education.data.*
 import suyun.personal.education.di.DaggerEducationComponentSuper
 import suyun.personal.education.di.EducationModule
 import suyun.personal.education.domain.CurrencyObject
+import suyun.personal.education.domain.RatesDomainRepository
+import suyun.personal.education.domain.RequestCurrencyUseCase
 import suyun.personal.education.presentation.dialog.DialogLoginInformation
-import suyun.personal.education.presentation.fragments.DetailFragment
 import javax.inject.Inject
 
 class LoginFragment : Fragment() {
@@ -33,6 +35,8 @@ class LoginFragment : Fragment() {
     @Inject lateinit var student: Student
     @Inject lateinit var dog: Dog
     @Inject lateinit var backPack: Backpack
+
+    lateinit var currencyUseCase: RequestCurrencyUseCase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,25 +53,30 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         var view = LayoutInflater.from(context).inflate(R.layout.fragment_login, container, false)
+
+        currencyUseCase = RequestCurrencyUseCase()
+
+        currencyUseCase.execute(CurrencyObserver())
+
+        currencyUseCase.dispose()
         student.initiatePrintName()
-        initiateRequest()
         return view
     }
 
-    fun initiateRequest(){
-        var apiConnection = ApiConnection()
-        apiConnection.initializeAPIObject().initiateGetRates().enqueue(object: Callback<CurrencyObject> {
-            override fun onFailure(call: Call<CurrencyObject>, t: Throwable) {
-                Log.d("Failure", "fail")
-            }
+    override fun onStop() {
+        super.onStop()
+        currencyUseCase.clear()
+    }
 
-            override fun onResponse(
-                call: Call<CurrencyObject>,
-                response: Response<CurrencyObject>) {
-                var currencyObject = response.body()
-                Log.d("Success", currencyObject.toString())
-            }
-        })
+    class CurrencyObserver : DisposableObserver<CurrencyObject>(){
+        override fun onComplete() {}
+
+        override fun onNext(t: CurrencyObject) {
+            Log.d("HERE", t.toString())
+        }
+
+        override fun onError(e: Throwable) {}
+
     }
 
     fun initiateDisplayAlertDialog(){

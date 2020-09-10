@@ -8,7 +8,5 @@ class StudentsSort(var students: ArrayList<Student>) {
         students.shuffle()
     }
 
-    fun studentsSortABC(){
-
-    }
+    fun studentsSortABC(){}
 }
